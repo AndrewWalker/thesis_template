@@ -50,8 +50,8 @@ FOR ANY PARTICULAR PURPOSE.
 Dependencies
 ------------
 
-It is recommended that if you use Ubuntu 12.04, that the following packages are
-a sensible set of minimum requirements. 
+The following dependancies build the template on Ubuntu 12.04. Some of these
+may not be required.
 
 .. code-block:: console
 
