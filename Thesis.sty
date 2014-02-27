@@ -1,0 +1,71 @@
+\input{rmitthesispage.sty}
+%\input{/home/thesis/chicaco.sty}
+%\input{parBig.sty}
+\usepackage{Thesis-env}
+
+%\usepackage{algorithmic}
+%\newenvironment{algorithm}{\begin{quote} %\vspace{1em}
+%\begin{algorithmic}\samepage}{\end{algorithmic} %\vspace{1em}
+%\end{quote}}
+
+\newcommand{\junkyard}[1]{}
+\newcommand{\dbd}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\ddbd}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+
+\renewcommand{\bibname}{References}
+%\usepackage{chicago}
+\usepackage{fancyhdr}
+\lhead{Chapter \thechapter}
+\rhead{}
+\addtolength{\textheight}{3pt}
+\addtolength{\headheight}{3pt}
+
+\usepackage{rotate}
+\usepackage{epic}
+\usepackage{eepic}
+\usepackage{eepicemu}
+\usepackage{epsf}
+\usepackage{latexsym}
+\usepackage{times}
+\usepackage{supertabular}
+%\renewcommand{\baselinestretch}{1.5}
+
+\renewcommand{\tableofcontents}{%
+    \if@twocolumn
+      \@restonecoltrue\onecolumn
+    \else
+      \@restonecolfalse
+    \fi
+    \jchapter*{\contentsname
+        \@mkboth{%
+           \MakeUppercase\contentsname}{\MakeUppercase\contentsname}}%
+    \@starttoc{toc}%
+    \if@restonecol\twocolumn\fi
+    }
+
+\renewcommand{\listoffigures}{%
+    \if@twocolumn
+      \@restonecoltrue\onecolumn
+    \else
+      \@restonecolfalse
+    \fi
+    \jchapter*{\listfigurename
+      \@mkboth{\MakeUppercase\listfigurename}%
+              {\MakeUppercase\listfigurename}}%
+    \@starttoc{lof}%
+    \if@restonecol\twocolumn\fi
+    }
+
+\renewcommand{\listoftables}{%
+    \if@twocolumn
+      \@restonecoltrue\onecolumn
+    \else
+      \@restonecolfalse
+    \fi
+    \jchapter*{\listtablename
+      \@mkboth{%
+          \MakeUppercase\listtablename}{\MakeUppercase\listtablename}}%
+    \@starttoc{lot}%
+    \if@restonecol\twocolumn\fi
+    }
+

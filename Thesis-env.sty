@@ -1,0 +1,155 @@
+\long\def\@makecaption#1#2{%
+  \vskip\abovecaptionskip
+  \centering
+%  \parbox{0.9\linewidth}{\small {\bf #1}{} #2}
+%    \end{macrocode}
+%    We want to see if the caption fits on one line on the page,
+%    therefore we first typeset it in a temporary box.
+%    \begin{macrocode}
+%%  \setbox\@tempboxa\hbox{\small {\bf #1}{} #2}%
+  \setbox\@tempboxa\hbox{\small {\bf #1}{} #2}%
+%    \end{macrocode}
+%    We can the measure its width. It that is larger than the current
+%    |\hsize| we typeset the caption as an ordinary paragraph.
+%    \begin{macrocode}
+  \ifdim \wd\@tempboxa >\hsize
+\parbox{0.9\linewidth}{\small % WE DONT REALLY WANT SMALL CAPTIONS? OH, YES, see AGPS
+{\bf #1}{} #2}\par
+%    \end{macrocode}
+%    If the caption fits, we center it.
+%   \begin{macrocode}
+  \else
+{\small % WE DONT REALLY WANT SMALL CAPTIONS? OH, YES, see AGPS
+{\bf #1}{} #2}\par
+%    \hbox to\hsize{\hfil\box\@tempboxa\hfil}%
+  \fi
+  \vskip\belowcaptionskip}
+
+%%%%%%%%%%%%%%%%% Adapted from mit-press (bradford) style
+% "/usr/TeX/lib/texmf/tex/local/mit-press/mit-press-book.sty"
+
+% In this document style, I have introduced a counter 'headmarkdepth' that
+% determines whether sections, subsections, etc. change the page heading.
+
+\newcounter{headmarkdepth}
+
+
+% The chapter headings will be formatted as follows:
+%
+%     Chapter 27
+%     ---------------------------------------------
+%     Still Further Considerations
+%
+% The \@chapterheadlayout definition helps keep the line the same distance from
+% the top of the page and the text regardless of what happens.
+% However, things could be changed so that the text moves downward if
+% the chapter has a long title.
+%
+% A \chapter*{...} chapter DOES appear in the table of contents,
+% in this document style; however, it appears in a different format
+% from a normal chapter.
+
+\def\@topjchapterdecls{\parindent\z@\raggedright} %\Large\bf moved to
+                                                 % topchapterbox 
+\def\@topjchapterbox#1#2{\hbox{\vbox to 58pt{\vfill 
+        \parbox[b]{\textwidth}{\hyphenpenalty5000 
+\begin{tabular}{r l} 
+\raisebox{4mm}[38pt]{\reset@font{\large\sc{#1}}} & #2 
+\end{tabular} }}}\par
+         \hbox to \textwidth{\hrulefill}}
+
+\def\@bottomjchapterbox#1{\hbox{}\par 
+        \vbox to 65pt{\parbox[b]{\textwidth}{\raggedright\hyphenpenalty1000 {\reset@font{\huge #1}}}\vfill}}
+
+\def\@thumbps#1{\epsfysize=38pt\epsfbox{#1}}
+%%% was \def\@jchapterheadlayout#1#2#3{\@topjchapterbox{#1}{\@thumbps{#2}}\@bottomjchapterbox{#3}} 
+\def\@jchapterheadlayout#1#2#3{\@topjchapterbox{#1}{\includegraphics[height=38pt]{#2}}\@bottomjchapterbox{#3}} 
+\def\@sjchapterheadlayout#1{\@topjchapterbox{ }{ }\@bottomjchapterbox{#1}} 
+
+%\def\@topchapterbox#1#2{\hbox{\vbox to 58pt{\vfill
+%     \parbox[b]{\textwidth}{\raggedright\hyphenpenalty5000 #1}}}\par
+%     \hbox to \textwidth{\hrulefill}}
+                                
+\def\@makejchapterhead#1#2#3{             % Heading for \chapter command
+    \bgroup
+    \@topjchapterdecls
+    % IF secnumdepth > -1 THEN
+    % print 'Chapter' and number.
+    \ifnum \c@secnumdepth >\m@ne
+      \@jchapterheadlayout{\@chapapp}{#3}{#2}\else
+      \@jchapterheadlayout{}{#3}{#2}\fi
+    \nobreak
+    \egroup}
+
+% \@makeschapterhead {TEXT} : Makes the heading for the \chapter* command.
+%
+\def\@sjchapter#1{
+   \if@twocolumn                                 % Tests for two-column mode.  
+           \@topnewpage[\@makesjchapterhead{#1}]  
+     \else \@makesjchapterhead{#1}
+           \@afterheading                  % Routine called after chapter and
+     \fi}                                  % section heading.
+
+
+\def\@makesjchapterhead#1{             % Heading for \chapter* command
+  \bgroup
+  \@topjchapterdecls
+  \@sjchapterheadlayout{#1}\nobreak
+  \egroup}
+
+% \secdef{UNSTARCMDS}{STARCMDS} :
+%    When defining a \chapter or \section command without using
+%    \@startsection, you can use \secdef as follows:
+%       \def\chapter { ... \secdef \CMDA \CMDB }
+%       \def\CMDA    [#1]#2{ ... }  % Command to define \chapter[...]{...}
+%       \def\CMDB    #1{ ... }      % Command to define \chapter*{...}
+
+\def\jchapter{\clearpage     % Starts new page, possibly leaving a blank one.
+   \thispagestyle{plain}     % Page style of chapter page is empty
+   \global\@topnum\z@        % Prevents figures from going at top of page.
+   \@afterindentfalse        % Suppresses indent in first paragraph.  Change
+   \secdef\@jchapter\@sjchapter}   % to \@afterindenttrue to have indent.
+
+\def\@jchapter[#1]#2#3{\ifnum \c@secnumdepth >\m@ne
+        \refstepcounter{chapter}
+        \typeout{Book \@chapapp\space\thechapter.}
+        \addcontentsline{toc}{chapter}{\protect
+        \numberline{\thechapter}#1}\else
+      \addcontentsline{toc}{chapter}{#1}\fi
+%      \jmwnewhead{#2}{#2}
+%   \chaptermark{#1}
+   \addtocontents{lof}{\protect\addvspace{10pt}} % Adds between-chapter space
+   \addtocontents{lot}{\protect\addvspace{10pt}} % to lists of figs & tables.
+   \if@twocolumn                                 % Tests for two-column mode.  
+           \@topnewpage[\@makejchapterhead{}{#2}{#3}]  
+     \else \@makejchapterhead{}{#2}{#3}
+           \@afterheading                  % Routine called after chapter and
+     \fi}                                  % section heading.
+
+\renewcommand{\section}{\@startsection {section}{1}{\z@}%
+                                   {-3.5ex \@plus -1ex \@minus -.2ex}%
+                                   {2.3ex \@plus.2ex}%
+                                   {\normalfont\Large}}
+
+\renewcommand{\subsection}{\@startsection{subsection}{2}{\z@}%
+                                     {-3.25ex\@plus -1ex \@minus -.2ex}%
+                                     {1.5ex \@plus .2ex}%
+                                     {\normalfont\large}}
+
+
+\renewenvironment{thebibliography}[1]
+     {\jchapter*{\bibname
+        \@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}}%
+      \list{\@biblabel{\@arabic\c@enumiv}}%
+           {\settowidth\labelwidth{\@biblabel{#1}}%
+            \leftmargin\labelwidth
+            \advance\leftmargin\labelsep
+            \@openbib@code
+            \usecounter{enumiv}%
+            \let\p@enumiv\@empty
+            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+      \sloppy\clubpenalty4000\widowpenalty4000%
+      \sfcode`\.\@m}
+     {\def\@noitemerr
+       {\@latex@warning{Empty `thebibliography' environment}}%
+      \endlist}

@@ -1,0 +1,97 @@
+% Root file.
+% Labels use the following conventions:
+% appendix app:<name>, chapter chp:<name>, equation eqn:<name>, figure fig:<name>, section sec:<name>, table tab:<name>
+\documentclass[a4paper,12pt,titlepage,openright]{report}
+\usepackage{etex}
+\usepackage{rmitthesis}
+\usepackage{Thesis} 
+
+\def\baselinestretch{1.5}
+\usepackage{setspace} 
+
+% If you're making customisations to the thesis style, do it here
+\usepackage{usercustom}
+
+\begin{document} 
+
+\input{thesis-front} 
+
+\onehalfspacing 
+
+\jchapter{Introduction}{chpfigs/1}\rhead{{\em Introduction}} 
+
+Just to make sure we have a bibliography \cite{LaValle06}
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+culpa qui officia deserunt mollit anim id est laborum.
+
+\section{A section}
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+culpa qui officia deserunt mollit anim id est laborum.
+
+
+
+\jchapter{Literature Review}{chpfigs/2}\rhead{{\em Literature Review}} 
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+culpa qui officia deserunt mollit anim id est laborum.
+
+
+
+\jchapter{Method}{chpfigs/3}\rhead{{\em Method}}
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+culpa qui officia deserunt mollit anim id est laborum.
+
+
+
+\jchapter{Results}{chpfigs/4}\rhead{{\em Results}} 
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+culpa qui officia deserunt mollit anim id est laborum.
+
+
+
+\jchapter{Conclusion}{chpfigs/7}\rhead{{\em Conclusion}} 
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+culpa qui officia deserunt mollit anim id est laborum.
+
+
+\pagestyle{fancy}
+\clearpage
+\lhead{}
+\rhead{{\em References}}
+\addcontentsline{toc}{chapter}{References} 
+
+{\bibliography{references}} 
+
+% Notes and todos dumped at the end.
+%\todos
+
+\end{document}

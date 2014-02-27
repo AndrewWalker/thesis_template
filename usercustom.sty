@@ -1,0 +1,48 @@
+
+% Standard mathematical packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+
+\usepackage{floatrow}
+
+\floatsetup[table]{style=plaintop}
+\usepackage{rotating}
+
+% Make the margins larger.
+%\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, linkcolor=black, anchorcolor=black, citecolor=black, filecolor=black, menucolor=black, urlcolor=black]{hyperref} 
+\usepackage{todo}
+
+\bibliographystyle{plain}
+
+\usepackage{subfig}
+
+% Extra math commands.
+\providecommand{\abs}[1]{\lvert#1\rvert}
+\providecommand{\e}[1]{\ensuremath{\times 1-^{#1}}}
+\newcommand{\mat}[1]{\mathbf{#1}}
+\DeclareMathOperator{\sgn}{sgn}
+\renewcommand{\vec}[1]{\boldsymbol{#1}}
+\newcommand{\trn}[1]{#1^\mathrm{T}}
+
+% Extra reference commands.
+\providecommand{\appref}[1]{Appendix~\ref{#1}}
+\providecommand{\chpref}[1]{Chapter~\ref{#1}}
+\providecommand{\eqnref}[1]{Equation~\ref{#1}}
+\providecommand{\figref}[1]{Figure~\ref{#1}}
+\providecommand{\secref}[1]{Section~\ref{#1}}
+\providecommand{\tabref}[1]{Table~\ref{#1}}
+
+% Set the pdf document info.
+\hypersetup{
+    pdfauthor = {Your Name},
+    pdftitle = {Your Title}
+    %pdfsubject = {Subject},
+    %pdfkeywords = {Keyword1, Keyword2, ...},
+    pdfcreator = {LaTeX with hyperref package},
+    pdfproducer = {pdflatex}
+}
+
+
